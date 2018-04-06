@@ -1,0 +1,7 @@
+{
+  "name": "PPL1",
+  "version": "0.0.1",
+  "dependencies": {
+    "assert": "^1.4.1"
+  }
+}

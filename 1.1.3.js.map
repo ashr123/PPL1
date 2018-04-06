@@ -1,0 +1,1 @@
+{"version":3,"file":"1.1.3.js","sourceRoot":"","sources":["1.1.3.ts"],"names":[],"mappings":"AAUA,IAAI,EAAE,GAAU,KAAI,EAAE,CAAC,CAAC,WAAW","sourcesContent":["interface T7\n{\n\ta: number[];\n}\n\ninterface T8\n{\n\ta: number;\n}\n\nlet T9: T7 & T8=void[]; //undefined"]}

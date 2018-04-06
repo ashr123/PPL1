@@ -1,0 +1,1 @@
+{"version":3,"file":"1.1.2.js","sourceRoot":"","sources":["1.1.2.ts"],"names":[],"mappings":"AAUA,IAAI,EAAE,GAAU;IACf,CAAC,EAAE,EAAC,CAAC,EAAE,CAAC;QACP,CAAC,EAAE,KAAK,EAAC;CACV,CAAC","sourcesContent":["interface T4\n{\n\ta: { b: number }\n}\n\ninterface T5\n{\n\ta: { c: string }\n}\n\nlet T6: T4 & T5={\n\ta: {b: 5,\n\t\tc: \"vvv\"}\n};"]}
