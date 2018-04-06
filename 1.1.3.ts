@@ -6,4 +6,4 @@ interface T8 {
 	a: number;
 }
 
-let T9: T7 & T8 = void[]; //undefined
+let T9: T7 & T8=void[]; //undefined
