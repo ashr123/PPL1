@@ -93,4 +93,3 @@ let GTreePostArray: <T>(tree: GBinTree<T>) => T[] = tree => {
 console.log(GTreePreArray(Tree2));
 console.log(GTreeInArray(Tree2));
 console.log(GTreePostArray(Tree2));
-console.log(typeof GTreePostArray);
