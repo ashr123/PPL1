@@ -1,13 +1,1 @@
-{
-  "version": 3,
-  "file": "1.1.1.js",
-  "sourceRoot": "",
-  "sources": [
-    "1.1.1.ts"
-  ],
-  "names": [],
-  "mappings": "AAUA,IAAI,EAAE,GAAU;IACf,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC;IACT,CAAC,EAAE,OAAO;CACV,CAAC",
-  "sourcesContent": [
-    "interface T1\n{\n\ta: number[];\n}\n\ninterface T2\n{\n\tb: string;\n}\n\nlet T3: T1 & T2={\n\ta: [4, 5],\n\tb: \"gghhg\"\n};"
-  ]
-}
+{"version":3,"file":"1.1.1.js","sourceRoot":"","sources":["1.1.1.ts"],"names":[],"mappings":"AAQA,IAAI,EAAE,GAAY;IACjB,CAAC,EAAE,CAAC,CAAC,EAAE,CAAC,CAAC;IACT,CAAC,EAAE,OAAO;CACV,CAAC","sourcesContent":["interface T1 {\r\n\ta: number[];\r\n}\r\n\r\ninterface T2 {\r\n\tb: string;\r\n}\r\n\r\nlet T3: T1 & T2 = {\r\n\ta: [4, 5],\r\n\tb: \"gghhg\"\r\n};"]}
