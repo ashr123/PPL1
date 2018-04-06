@@ -77,26 +77,26 @@ interface GBinTree<T>
 	right?: GBinTree<T>;
 }
 
-let GTreePreArray: <T>(tree: GBinTree<T>) => T[]=tree =>
+function GTreePreArray <T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
 	return union([tree.root], union(GTreePreArray(tree.left), GTreePreArray(tree.right)));
-};
+}
 
-let GTreeInArray: <T>(tree: GBinTree<T>) => T[]=tree =>
+function GTreeInArray <T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
 	return union(GTreeInArray(tree.left), union([tree.root], GTreeInArray(tree.right)));
-};
+}
 
-let GTreePostArray: <T>(tree: GBinTree<T>) => T[]=tree =>
+function GTreePostArray <T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
 	return union(union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
-};
+}
 
 console.log(GTreePreArray(Tree2));
 console.log(GTreeInArray(Tree2));

@@ -55,21 +55,21 @@ var TreePostArray = function (tree) {
 console.log(TreePreArray(tree));
 console.log(TreeInArray(tree));
 console.log(TreePostArray(tree));
-var GTreePreArray = function (tree) {
+function GTreePreArray(tree) {
     if (!tree)
         return [];
     return ramda_1.union([tree.root], ramda_1.union(GTreePreArray(tree.left), GTreePreArray(tree.right)));
-};
-var GTreeInArray = function (tree) {
+}
+function GTreeInArray(tree) {
     if (!tree)
         return [];
     return ramda_1.union(GTreeInArray(tree.left), ramda_1.union([tree.root], GTreeInArray(tree.right)));
-};
-var GTreePostArray = function (tree) {
+}
+function GTreePostArray(tree) {
     if (!tree)
         return [];
     return ramda_1.union(ramda_1.union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
-};
+}
 console.log(GTreePreArray(Tree2));
 console.log(GTreeInArray(Tree2));
 console.log(GTreePostArray(Tree2));
