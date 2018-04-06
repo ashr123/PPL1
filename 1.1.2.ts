@@ -1,8 +1,10 @@
-interface T4 {
+interface T4
+{
 	a: { b: number }
 }
 
-interface T5 {
+interface T5
+{
 	a: { c: string }
 }
 

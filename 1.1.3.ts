@@ -1,8 +1,10 @@
-interface T7 {
+interface T7
+{
 	a: number[];
 }
 
-interface T8 {
+interface T8
+{
 	a: number;
 }
 

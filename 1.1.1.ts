@@ -1,8 +1,10 @@
-interface T1 {
+interface T1
+{
 	a: number[];
 }
 
-interface T2 {
+interface T2
+{
 	b: string;
 }
 

@@ -3,6 +3,7 @@
     <option name="LINE_SEPARATOR" value="&#13;&#10;" />
     <TypeScriptCodeStyleSettings>
       <option name="USE_CHAINED_CALLS_GROUP_INDENTS" value="true" />
+      <option name="FUNCTION_EXPRESSION_BRACE_STYLE" value="2" />
     </TypeScriptCodeStyleSettings>
     <codeStyleSettings language="JAVA">
       <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
@@ -45,6 +46,8 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
+      <option name="CLASS_BRACE_STYLE" value="2" />
+      <option name="METHOD_BRACE_STYLE" value="2" />
       <option name="SPACE_AROUND_ASSIGNMENT_OPERATORS" value="false" />
       <option name="SPACE_AROUND_EQUALITY_OPERATORS" value="false" />
       <option name="SPACE_AROUND_RELATIONAL_OPERATORS" value="false" />
