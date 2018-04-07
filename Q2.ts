@@ -49,14 +49,14 @@ let TreePreArray: (tree: BinTree) => number[]=tree =>
 {
 	if (!tree)
 		return [];
-	return union([tree.root], union(TreePreArray(tree.left), TreePreArray(tree.right)));
+	return union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
 };
 
 let TreeInArray: (tree: BinTree) => number[]=tree =>
 {
 	if (!tree)
 		return [];
-	return union(TreeInArray(tree.left), union([tree.root], TreeInArray(tree.right)));
+	return union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
 };
 
 let TreePostArray: (tree: BinTree) => number[]=tree =>
@@ -77,21 +77,21 @@ interface GBinTree<T>
 	right?: GBinTree<T>;
 }
 
-function GTreePreArray <T>(tree: GBinTree<T>): T[]
+function GTreePreArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
-	return union([tree.root], union(GTreePreArray(tree.left), GTreePreArray(tree.right)));
+	return union(union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
 }
 
-function GTreeInArray <T>(tree: GBinTree<T>): T[]
+function GTreeInArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
-	return union(GTreeInArray(tree.left), union([tree.root], GTreeInArray(tree.right)));
+	return union(union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
 }
 
-function GTreePostArray <T>(tree: GBinTree<T>): T[]
+function GTreePostArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];

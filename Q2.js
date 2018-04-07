@@ -40,12 +40,12 @@ var Tree2 = {
 var TreePreArray = function (tree) {
     if (!tree)
         return [];
-    return ramda_1.union([tree.root], ramda_1.union(TreePreArray(tree.left), TreePreArray(tree.right)));
+    return ramda_1.union(ramda_1.union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
 };
 var TreeInArray = function (tree) {
     if (!tree)
         return [];
-    return ramda_1.union(TreeInArray(tree.left), ramda_1.union([tree.root], TreeInArray(tree.right)));
+    return ramda_1.union(ramda_1.union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
 };
 var TreePostArray = function (tree) {
     if (!tree)
@@ -58,12 +58,12 @@ console.log(TreePostArray(tree));
 function GTreePreArray(tree) {
     if (!tree)
         return [];
-    return ramda_1.union([tree.root], ramda_1.union(GTreePreArray(tree.left), GTreePreArray(tree.right)));
+    return ramda_1.union(ramda_1.union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
 }
 function GTreeInArray(tree) {
     if (!tree)
         return [];
-    return ramda_1.union(GTreeInArray(tree.left), ramda_1.union([tree.root], GTreeInArray(tree.right)));
+    return ramda_1.union(ramda_1.union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
 }
 function GTreePostArray(tree) {
     if (!tree)
