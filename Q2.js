@@ -157,12 +157,12 @@ testGTreePreArray();
 testGTreeInArray();
 testGTreePostArray();
 function KSubsets(A, k) {
-    function fork(i, t) {
-        if (t.length === k)
-            return [t];
+    function fork(i, acc) {
+        if (acc.length === k)
+            return [acc];
         if (i === A.length)
             return [];
-        return fork(i + 1, t.concat([A[i]])).concat(fork(i + 1, t));
+        return fork(i + 1, acc.concat([A[i]])).concat(fork(i + 1, acc));
     }
     return fork(0, []);
 }
@@ -198,7 +198,7 @@ function Flatmap(f, A) {
     }
     return temp(0);
 }
-console.log(Flatmap((x) => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
+console.log(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 let movieLists = [
     {
         name: "Instant Queue",

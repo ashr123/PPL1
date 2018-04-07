@@ -203,13 +203,13 @@ testGTreePostArray();
 
 function KSubsets<T>(A: T[], k: number): T[][]
 {
-	function fork(i: number, t: T[]): T[][]
+	function fork(i: number, acc: T[]): T[][]
 	{
-		if (t.length===k)
-			return [t];
+		if (acc.length===k)
+			return [acc];
 		if (i===A.length)
 			return [];
-		return fork(i+1, t.concat([A[i]])).concat(fork(i+1, t));
+		return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
 	}
 
 	return fork(0, [])
@@ -240,7 +240,7 @@ function testKSubsets(): void
 	assert.deepStrictEqual(KSubsets(num, 3), [[1, 2, 3]]);
 }
 
-function testAllSubsets(): void
+function testAllSubsets(): void //TODO 3rd assert
 {
 	assert.deepStrictEqual(AllSubsets(num), [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]);
 	assert.deepStrictEqual(AllSubsets([[1], [2], [3]]),
@@ -252,7 +252,7 @@ testKSubsets();
 testAllSubsets();
 
 
-function Flatmap<T>(f: (x: T[][] /*T[][]?*/) => T[], A: T[][]): T[]
+function Flatmap<T>(f: (x/*: T[][] T[][]?*/) => T[], A: T[][]): T[]
 {
 	function temp(i: number): T[]
 	{
@@ -264,7 +264,7 @@ function Flatmap<T>(f: (x: T[][] /*T[][]?*/) => T[], A: T[][]): T[]
 	return temp(0);
 }
 
-console.log(Flatmap((x) => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
+console.log(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 
 type boxart={ width: number, height: number, url: string };
 type video={
