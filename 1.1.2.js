@@ -1,4 +1,4 @@
-var T6 = {
+let T6 = {
     a: {
         b: 5,
         c: "vvv"

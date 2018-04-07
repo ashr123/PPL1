@@ -1,4 +1,4 @@
-var T3 = {
+let T3 = {
     a: [4, 5],
     b: "gghhg"
 };

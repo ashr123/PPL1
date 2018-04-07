@@ -2,6 +2,8 @@
   "name": "PPL1",
   "version": "0.0.1",
   "dependencies": {
-    "assert": "^1.4.1"
+    "assert": "^1.4.1",
+    "npm": "^5.8.0",
+    "typescript": "^2.8.1"
   }
 }

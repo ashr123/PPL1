@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ramda_1 = require("ramda");
-var tree = {
+const ramda_1 = require("ramda");
+let tree = {
     root: 5,
     left: {
         root: -3,
@@ -19,7 +19,7 @@ var tree = {
         }
     }
 };
-var Tree2 = {
+let Tree2 = {
     root: true,
     left: {
         root: 'a',
@@ -37,17 +37,17 @@ var Tree2 = {
         }
     }
 };
-var TreePreArray = function (tree) {
+let TreePreArray = tree => {
     if (!tree)
         return [];
     return ramda_1.union(ramda_1.union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
 };
-var TreeInArray = function (tree) {
+let TreeInArray = tree => {
     if (!tree)
         return [];
     return ramda_1.union(ramda_1.union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
 };
-var TreePostArray = function (tree) {
+let TreePostArray = tree => {
     if (!tree)
         return [];
     return ramda_1.union(ramda_1.union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
