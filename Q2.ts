@@ -240,21 +240,21 @@ function testKSubsets(): void
 	assert.deepStrictEqual(KSubsets(num, 3), [[1, 2, 3]]);
 }
 
-function testAllSubsets(): void //TODO 3rd assert
+function testAllSubsets(): void
 {
 	assert.deepStrictEqual(AllSubsets(num), [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]);
 	assert.deepStrictEqual(AllSubsets([[1], [2], [3]]),
 		[[], [[1]], [[2]], [[3]], [[1], [2]], [[1], [3]], [[2], [3]], [[1], [2], [3]]]);
-
+	assert.deepStrictEqual(AllSubsets([]), [[]]);
 }
 
 testKSubsets();
 testAllSubsets();
 
 
-function Flatmap<T>(f: (x/*: T[][] T[][]?*/) => T[], A: T[][]): T[]
+function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 {
-	function temp(i: number): T[]
+	function temp(i: number): R[]
 	{
 		if (i===A.length)
 			return [];
@@ -264,7 +264,15 @@ function Flatmap<T>(f: (x/*: T[][] T[][]?*/) => T[], A: T[][]): T[]
 	return temp(0);
 }
 
-console.log(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
+console.log(Flatmap(x => [x, x+1], [1, 2, 3, 4]));
+
+function testFlatmap(): void
+{
+	assert.deepStrictEqual(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [1, 2, 5, 6]);
+	assert.deepStrictEqual(Flatmap(x => [x, x+1], [1, 2, 3, 4]), [1, 2, 2, 3, 3, 4, 4, 5]);
+	assert.deepStrictEqual(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]),
+		[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]);
+}
 
 type boxart={ width: number, height: number, url: string };
 type video={
