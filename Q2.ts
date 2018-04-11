@@ -283,7 +283,7 @@ type Video={
 	rating: number,
 	bookmark: { id: number, time: number }[]
 }
-type BoxArt={ id: number, title: string, boxart: string };
+type BoxArtRet={ id: number, title: string, boxart: string };
 
 interface Movie
 {
@@ -350,9 +350,9 @@ let movieLists: Movie[]=[
 	}
 ];
 
-function getBoxArts(movieLists: Movie[]): BoxArt[]
+function getBoxArts(movieLists: Movie[]): BoxArtRet[]
 {
-	return Flatmap((x: Movie): Video[] => x.videos, movieLists).map((y: Video): BoxArt =>
+	return Flatmap((x: Movie): Video[] => x.videos, movieLists).map((y: Video): BoxArtRet =>
 	{
 		return {
 			id: y.id,
