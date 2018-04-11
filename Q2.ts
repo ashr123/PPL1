@@ -1,4 +1,4 @@
-import {map, union} from 'ramda'
+// import {map, union} from 'ramda'
 
 declare let require: any;
 const assert=require('assert');
@@ -98,21 +98,21 @@ let TreePreArray: (tree: BinTree) => number[]=tree =>
 {
 	if (!tree)
 		return [];
-	return union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
+	return [tree.root].concat(TreePreArray(tree.left)).concat(TreePreArray(tree.right)) //union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
 };
 
 let TreeInArray: (tree: BinTree) => number[]=tree =>
 {
 	if (!tree)
 		return [];
-	return union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
+	return TreeInArray(tree.left).concat([tree.root]).concat(TreeInArray(tree.right)) //union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
 };
 
 let TreePostArray: (tree: BinTree) => number[]=tree =>
 {
 	if (!tree)
 		return [];
-	return union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
+	return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]) //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
 };
 
 function testTreePreArray(): void
@@ -140,9 +140,9 @@ testTreePreArray();
 testTreeInArray();
 testTreePostArray();
 
-console.log(TreePreArray(tree1));
-console.log(TreeInArray(tree1));
-console.log(TreePostArray(tree1));
+// console.log(TreePreArray(tree1));
+// console.log(TreeInArray(tree1));
+// console.log(TreePostArray(tree1));
 
 interface GBinTree<T>
 {
@@ -155,26 +155,26 @@ function GTreePreArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
-	return union(union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
+	return [tree.root].concat(GTreePreArray(tree.left)).concat(GTreePreArray(tree.right)) //union(union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
 }
 
 function GTreeInArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
-	return union(union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
+	return GTreeInArray(tree.left).concat([tree.root]).concat(GTreeInArray(tree.right)) //union(union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
 }
 
 function GTreePostArray<T>(tree: GBinTree<T>): T[]
 {
 	if (!tree)
 		return [];
-	return union(union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
+	return GTreePostArray(tree.left).concat(GTreePostArray(tree.right)).concat([tree.root]) //union(union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
 }
 
-console.log(GTreePreArray(GTree2));
-console.log(GTreeInArray(GTree2));
-console.log(GTreePostArray(GTree2));
+// console.log(GTreePreArray(GTree2));
+// console.log(GTreeInArray(GTree2));
+// console.log(GTreePostArray(GTree2));
 
 function testGTreePreArray(): void
 {
@@ -228,10 +228,10 @@ function AllSubsets<T>(A: T[]): T[][]
 }
 
 const num: number[]=[1, 2, 3];
-console.log(KSubsets(num, 2));
-console.log(KSubsets([[1], [2], [3]], 2));
-console.log(AllSubsets(num));
-console.log(AllSubsets([[1], [2], [3]]));
+// console.log(KSubsets(num, 2));
+// console.log(KSubsets([[1], [2], [3]], 2));
+// console.log(AllSubsets(num));
+// console.log(AllSubsets([[1], [2], [3]]));
 
 function testKSubsets(): void
 {
@@ -251,7 +251,6 @@ function testAllSubsets(): void
 testKSubsets();
 testAllSubsets();
 
-
 function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 {
 	function temp(i: number): R[]
@@ -264,7 +263,7 @@ function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 	return temp(0);
 }
 
-console.log(Flatmap(x => [x, x+1], [1, 2, 3, 4]));
+// console.log(Flatmap(x => [x, x+1], [1, 2, 3, 4]));
 
 function testFlatmap(): void
 {
@@ -362,4 +361,32 @@ function getBoxArts(movieLists: Movie[]): BoxArtRet[]
 	});
 }
 
-console.log(getBoxArts(movieLists));
+// console.log(getBoxArts([{name: "Empty", videos: []}]));
+
+function testGetBoxArts()
+{
+	assert.deepStrictEqual(getBoxArts(movieLists), [{
+		id: 70111470,
+		title: 'Die Hard',
+		boxart: 'http://cdn-0.nflximg.com/images/2891/DieHard150.jpg'
+	},
+		{
+			id: 654356453,
+			title: 'Bad Boys',
+			boxart: 'http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg'
+		},
+		{
+			id: 65432445,
+			title: 'The Chamber',
+			boxart: 'http://cdn-0.nflximg.com/images/2891/TheChamber150.jpg'
+		},
+		{
+			id: 675465,
+			title: 'Fracture',
+			boxart: 'http://cdn-0.nflximg.com/images/2891/Fracture150.jpg'
+		}]);
+	assert.deepStrictEqual(getBoxArts([{name: "Empty", videos: []}]), []);
+	assert.deepStrictEqual(getBoxArts([]), []);
+}
+
+testGetBoxArts();

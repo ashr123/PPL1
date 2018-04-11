@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const ramda_1 = require("ramda");
+// import {map, union} from 'ramda'
 const assert = require('assert');
 let tree1 = {
     root: 5,
@@ -87,17 +85,17 @@ let GTree1 = {
 let TreePreArray = tree => {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
+    return [tree.root].concat(TreePreArray(tree.left)).concat(TreePreArray(tree.right)); //union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
 };
 let TreeInArray = tree => {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
+    return TreeInArray(tree.left).concat([tree.root]).concat(TreeInArray(tree.right)); //union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
 };
 let TreePostArray = tree => {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
+    return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]); //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
 };
 function testTreePreArray() {
     assert.deepStrictEqual(TreePreArray(tree1), [5, -3, 23, 3, 8, 12]);
@@ -117,27 +115,24 @@ function testTreePostArray() {
 testTreePreArray();
 testTreeInArray();
 testTreePostArray();
-console.log(TreePreArray(tree1));
-console.log(TreeInArray(tree1));
-console.log(TreePostArray(tree1));
 function GTreePreArray(tree) {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
+    return [tree.root].concat(GTreePreArray(tree.left)).concat(GTreePreArray(tree.right)); //union(union([tree.root], GTreePreArray(tree.left)), GTreePreArray(tree.right));
 }
 function GTreeInArray(tree) {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
+    return GTreeInArray(tree.left).concat([tree.root]).concat(GTreeInArray(tree.right)); //union(union(GTreeInArray(tree.left), [tree.root]), GTreeInArray(tree.right));
 }
 function GTreePostArray(tree) {
     if (!tree)
         return [];
-    return ramda_1.union(ramda_1.union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
+    return GTreePostArray(tree.left).concat(GTreePostArray(tree.right)).concat([tree.root]); //union(union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
 }
-console.log(GTreePreArray(GTree2));
-console.log(GTreeInArray(GTree2));
-console.log(GTreePostArray(GTree2));
+// console.log(GTreePreArray(GTree2));
+// console.log(GTreeInArray(GTree2));
+// console.log(GTreePostArray(GTree2));
 function testGTreePreArray() {
     assert.deepStrictEqual(GTreePreArray(GTree1), [true, 'a', 'mayer', 'theMargiz', 'b', 8]);
     assert.deepStrictEqual(GTreePreArray(GTree2), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
@@ -175,10 +170,10 @@ function AllSubsets(A) {
     return temp(0);
 }
 const num = [1, 2, 3];
-console.log(KSubsets(num, 2));
-console.log(KSubsets([[1], [2], [3]], 2));
-console.log(AllSubsets(num));
-console.log(AllSubsets([[1], [2], [3]]));
+// console.log(KSubsets(num, 2));
+// console.log(KSubsets([[1], [2], [3]], 2));
+// console.log(AllSubsets(num));
+// console.log(AllSubsets([[1], [2], [3]]));
 function testKSubsets() {
     assert.deepStrictEqual(KSubsets(num, 2), [[1, 2], [1, 3], [2, 3]]);
     assert.deepStrictEqual(KSubsets(num, 0), [[]]);
@@ -199,7 +194,7 @@ function Flatmap(f, A) {
     }
     return temp(0);
 }
-console.log(Flatmap(x => [x, x + 1], [1, 2, 3, 4]));
+// console.log(Flatmap(x => [x, x+1], [1, 2, 3, 4]));
 function testFlatmap() {
     assert.deepStrictEqual(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [1, 2, 5, 6]);
     assert.deepStrictEqual(Flatmap(x => [x, x + 1], [1, 2, 3, 4]), [1, 2, 2, 3, 3, 4, 4, 5]);
@@ -271,5 +266,30 @@ function getBoxArts(movieLists) {
         };
     });
 }
-console.log(getBoxArts(movieLists));
+// console.log(getBoxArts([{name: "Empty", videos: []}]));
+function testGetBoxArts() {
+    assert.deepStrictEqual(getBoxArts(movieLists), [{
+            id: 70111470,
+            title: 'Die Hard',
+            boxart: 'http://cdn-0.nflximg.com/images/2891/DieHard150.jpg'
+        },
+        {
+            id: 654356453,
+            title: 'Bad Boys',
+            boxart: 'http://cdn-0.nflximg.com/images/2891/BadBoys150.jpg'
+        },
+        {
+            id: 65432445,
+            title: 'The Chamber',
+            boxart: 'http://cdn-0.nflximg.com/images/2891/TheChamber150.jpg'
+        },
+        {
+            id: 675465,
+            title: 'Fracture',
+            boxart: 'http://cdn-0.nflximg.com/images/2891/Fracture150.jpg'
+        }]);
+    assert.deepStrictEqual(getBoxArts([{ name: "Empty", videos: [] }]), []);
+    assert.deepStrictEqual(getBoxArts([]), []);
+}
+testGetBoxArts();
 //# sourceMappingURL=Q2.js.map
