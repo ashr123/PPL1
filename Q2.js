@@ -262,8 +262,14 @@ let movieLists = [
         ]
     }
 ];
-// function getBoxArts(movieLists: Movie[]): { id: number, title: string, boxarts: string /*aka url*/ }
-// {
-//
-// }
+function getBoxArts(movieLists) {
+    return Flatmap((x) => x.videos, movieLists).map((y) => {
+        return {
+            id: y.id,
+            title: y.title,
+            boxart: Flatmap((z) => [z.url], y.boxarts.filter((u) => u.width === 150 && u.height === 200)).reduce((acc) => acc)
+        };
+    });
+}
+console.log(getBoxArts(movieLists));
 //# sourceMappingURL=Q2.js.map

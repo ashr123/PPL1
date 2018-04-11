@@ -274,20 +274,21 @@ function testFlatmap(): void
 		[[[1, 2], [3, 4]], [[5, 6], [7, 8]]]);
 }
 
-type boxart={ width: number, height: number, url: string };
-type video={
+type Boxart={ width: number, height: number, url: string };
+type Video={
 	id: number,
 	title: string,
-	boxarts: boxart[],
+	boxarts: Boxart[],
 	url: string,
 	rating: number,
 	bookmark: { id: number, time: number }[]
 }
+type BoxArt={ id: number, title: string, boxart: string };
 
 interface Movie
 {
 	name: string,
-	videos: video[]
+	videos: Video[]
 }
 
 let movieLists: Movie[]=[
@@ -349,7 +350,16 @@ let movieLists: Movie[]=[
 	}
 ];
 
-// function getBoxArts(movieLists: Movie[]): { id: number, title: string, boxarts: string /*aka url*/ }
-// {
-//
-// }
+function getBoxArts(movieLists: Movie[]): BoxArt[]
+{
+	return Flatmap((x: Movie): Video[] => x.videos, movieLists).map((y: Video): BoxArt =>
+	{
+		return {
+			id: y.id,
+			title: y.title,
+			boxart: Flatmap((z: Boxart): string[] => [z.url], y.boxarts.filter((u: Boxart): boolean => u.width===150 && u.height===200)).reduce((acc: string): string => acc)
+		}
+	});
+}
+
+console.log(getBoxArts(movieLists));
