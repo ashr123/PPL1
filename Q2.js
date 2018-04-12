@@ -194,12 +194,13 @@ function Flatmap(f, A) {
     }
     return temp(0);
 }
-// console.log(Flatmap(x => [x, x+1], [1, 2, 3, 4]));
+// console.log(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 function testFlatmap() {
     assert.deepStrictEqual(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [1, 2, 5, 6]);
     assert.deepStrictEqual(Flatmap(x => [x, x + 1], [1, 2, 3, 4]), [1, 2, 2, 3, 3, 4, 4, 5]);
-    assert.deepStrictEqual(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]);
+    assert.deepStrictEqual(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [[1, 2], [3, 4], [5, 6], [7, 8]]);
 }
+testFlatmap();
 let movieLists = [
     {
         name: "Instant Queue",
