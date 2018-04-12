@@ -53,7 +53,7 @@ const tree1: BinTree={
 		}
 	},
 	tree3: BinTree=undefined,
-	GTree1: GBinTree<any>={
+	GTree1: GBinTree<string | number | boolean>={
 		root: true,
 		left: {
 			root: 'a',
