@@ -1,6 +1,6 @@
 // import {map, union} from 'ramda'
 const assert = require('assert');
-let tree1 = {
+const tree1 = {
     root: 5,
     left: {
         root: -3,
@@ -40,8 +40,7 @@ let tree1 = {
             }
         }
     }
-}, tree3 = undefined;
-let GTree1 = {
+}, tree3 = undefined, GTree1 = {
     root: true,
     left: {
         root: 'a',
@@ -81,18 +80,15 @@ let GTree1 = {
             }
         }
     }
-}, GTree3 = undefined;
-let TreePreArray = tree => {
+}, GTree3 = undefined, TreePreArray = tree => {
     if (!tree)
         return [];
     return [tree.root].concat(TreePreArray(tree.left)).concat(TreePreArray(tree.right)); //union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
-};
-let TreeInArray = tree => {
+}, TreeInArray = tree => {
     if (!tree)
         return [];
     return TreeInArray(tree.left).concat([tree.root]).concat(TreeInArray(tree.right)); //union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
-};
-let TreePostArray = tree => {
+}, TreePostArray = tree => {
     if (!tree)
         return [];
     return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]); //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
@@ -201,7 +197,7 @@ function testFlatmap() {
     assert.deepStrictEqual(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [[1, 2], [3, 4], [5, 6], [7, 8]]);
 }
 testFlatmap();
-let movieLists = [
+const movieLists = [
     {
         name: "Instant Queue",
         videos: [

@@ -10,110 +10,110 @@ interface BinTree
 	right?: BinTree;
 }
 
-let tree1: BinTree={
-	root: 5,
-	left: {
-		root: -3,
+const tree1: BinTree={
+		root: 5,
 		left: {
-			root: 23
-		}
-	},
-	right: {
-		root: 3,
-		left: {
-			root: 8
+			root: -3,
+			left: {
+				root: 23
+			}
 		},
 		right: {
-			root: 12
-		}
-	}
-}, tree2: BinTree={
-	root: 1,
-	right: {
-		root: 2,
-		right: {
 			root: 3,
+			left: {
+				root: 8
+			},
 			right: {
-				root: 4,
-				right: {
-					root: 5,
-					right: {
-						root: 6,
-						right: {
-							root: 7,
-							right: {
-								root: 8
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}, tree3: BinTree=undefined;
-
-let GTree1: GBinTree<any>={
-	root: true,
-	left: {
-		root: 'a',
-		left: {
-			root: 'mayer',
-			right: {
-				root: 'theMargiz'
+				root: 12
 			}
 		}
 	},
-	right: {
-		root: 'b',
-		left: {
-			root: 8
-		}
-	}
-}, GTree2: GBinTree<string>={
-	root: "a",
-	right: {
-		root: "b",
+	tree2: BinTree={
+		root: 1,
 		right: {
-			root: "c",
+			root: 2,
 			right: {
-				root: "d",
+				root: 3,
 				right: {
-					root: "e",
+					root: 4,
 					right: {
-						root: "f",
+						root: 5,
 						right: {
-							root: "g",
+							root: 6,
 							right: {
-								root: "h"
+								root: 7,
+								right: {
+									root: 8
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-	}
-}, GTree3=undefined;
-
-let TreePreArray: (tree: BinTree) => number[]=tree =>
-{
-	if (!tree)
-		return [];
-	return [tree.root].concat(TreePreArray(tree.left)).concat(TreePreArray(tree.right)) //union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
-};
-
-let TreeInArray: (tree: BinTree) => number[]=tree =>
-{
-	if (!tree)
-		return [];
-	return TreeInArray(tree.left).concat([tree.root]).concat(TreeInArray(tree.right)) //union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
-};
-
-let TreePostArray: (tree: BinTree) => number[]=tree =>
-{
-	if (!tree)
-		return [];
-	return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]) //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
-};
+	},
+	tree3: BinTree=undefined,
+	GTree1: GBinTree<any>={
+		root: true,
+		left: {
+			root: 'a',
+			left: {
+				root: 'mayer',
+				right: {
+					root: 'theMargiz'
+				}
+			}
+		},
+		right: {
+			root: 'b',
+			left: {
+				root: 8
+			}
+		}
+	},
+	GTree2: GBinTree<string>={
+		root: "a",
+		right: {
+			root: "b",
+			right: {
+				root: "c",
+				right: {
+					root: "d",
+					right: {
+						root: "e",
+						right: {
+							root: "f",
+							right: {
+								root: "g",
+								right: {
+									root: "h"
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	GTree3=undefined,
+	TreePreArray: (tree: BinTree) => number[]=tree =>
+	{
+		if (!tree)
+			return [];
+		return [tree.root].concat(TreePreArray(tree.left)).concat(TreePreArray(tree.right)) //union(union([tree.root], TreePreArray(tree.left)), TreePreArray(tree.right));
+	},
+	TreeInArray: (tree: BinTree) => number[]=tree =>
+	{
+		if (!tree)
+			return [];
+		return TreeInArray(tree.left).concat([tree.root]).concat(TreeInArray(tree.right)) //union(union(TreeInArray(tree.left), [tree.root]), TreeInArray(tree.right));
+	},
+	TreePostArray: (tree: BinTree) => number[]=tree =>
+	{
+		if (!tree)
+			return [];
+		return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]) //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
+	};
 
 function testTreePreArray(): void
 {
@@ -292,7 +292,7 @@ interface Movie
 	videos: Video[]
 }
 
-let movieLists: Movie[]=[
+const movieLists: Movie[]=[
 	{
 		name: "Instant Queue",
 		videos: [
