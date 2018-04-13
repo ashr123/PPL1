@@ -74,13 +74,6 @@
     (cond ((empty? text) text)
           ((equal? (car text) currMember) (textIt2 (cdr text) currMember))
           (else text))))
-;(define textIt2
-;  (lambda (text currMember)
-;    (if (empty? text)
-;        text
-;        (if (equal? (car text) currMember)
-;            (textIt2 (cdr text) currMember)
-;            text))))
 
 ; Signature: remove-adjacent-duplicates(list)
 ; Purpose: Returns a list that doesn't have adjacent members duplicates
