@@ -45,9 +45,9 @@ const tree1 = {
     left: {
         root: 'a',
         left: {
-            root: 'mayer',
+            root: 'Java',
             right: {
-                root: 'theMargiz'
+                root: 'Scheme'
             }
         }
     },
@@ -126,21 +126,21 @@ function GTreePostArray(tree) {
         return [];
     return GTreePostArray(tree.left).concat(GTreePostArray(tree.right)).concat([tree.root]); //union(union(GTreePostArray(tree.left), GTreePostArray(tree.right)), [tree.root]);
 }
-// console.log(GTreePreArray(GTree2));
-// console.log(GTreeInArray(GTree2));
-// console.log(GTreePostArray(GTree2));
+// console.log(GTreePreArray(GTree1));
+// console.log(GTreeInArray(GTree1));
+// console.log(GTreePostArray(GTree1));
 function testGTreePreArray() {
-    assert.deepStrictEqual(GTreePreArray(GTree1), [true, 'a', 'mayer', 'theMargiz', 'b', 8]);
+    assert.deepStrictEqual(GTreePreArray(GTree1), [true, 'a', 'Java', 'Scheme', 'b', 8]);
     assert.deepStrictEqual(GTreePreArray(GTree2), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
     assert.deepStrictEqual(GTreePreArray(GTree3), []);
 }
 function testGTreeInArray() {
-    assert.deepStrictEqual(GTreeInArray(GTree1), ['mayer', 'theMargiz', 'a', true, 8, 'b']);
+    assert.deepStrictEqual(GTreeInArray(GTree1), ['Java', 'Scheme', 'a', true, 8, 'b']);
     assert.deepStrictEqual(GTreeInArray(GTree2), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
     assert.deepStrictEqual(GTreeInArray(GTree3), []);
 }
 function testGTreePostArray() {
-    assert.deepStrictEqual(GTreePostArray(GTree1), ['theMargiz', 'mayer', 'a', 8, 'b', true]);
+    assert.deepStrictEqual(GTreePostArray(GTree1), ['Scheme', 'Java', 'a', 8, 'b', true]);
     assert.deepStrictEqual(GTreePostArray(GTree2), ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']);
     assert.deepStrictEqual(GTreePostArray(GTree3), []);
 }
