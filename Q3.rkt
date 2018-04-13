@@ -12,11 +12,9 @@
 ;          (textIt '()) should produce '()
 (define textIt
   (lambda (text)
-    (if (empty? text)
-        text
-        (if (equal? (member (car text) vowels) #f)
-            text
-            (textIt (cdr text))))))
+    (cond ((empty? text) text)
+          ((equal? (member (car text) vowels) #f) text)
+          (else (textIt (cdr text))))))
 
 ; Signature: count-syllables(text)
 ; Purpose: Returns s the number of syllables in the word, consecutive vowels counts as one vowel
@@ -28,15 +26,13 @@
 ;          (count-syllables '()) should produce 0
 (define count-syllables
     (lambda (text)
-      (if (empty? text)
-          0
-          (if (equal? (member (car text) vowels) #f)
-              (count-syllables (cdr text))
-              (+ 1 (count-syllables (textIt (cdr text))))))))
+      (cond ((empty? text) 0)
+            ((equal? (member (car text) vowels) #f) (count-syllables (cdr text)))
+            (else (+ 1 (count-syllables (textIt (cdr text))))))))
 
 ; Signature: sorted?(list, comp)
 ; Purpose: Returns #t if the list sorted according to comp
-; Type: [list*function -> boolean]
+; Type: [list*procedure -> boolean]
 ; Example: (sorted? '(1 3 5) <) should produce #t
 ;          (sorted? '(1 3 5) >) should produce #f
 ;          (sorted? '() <) should produce #t
@@ -59,15 +55,11 @@
 ;          (merge '(-5 -3 0 3 5) '(-18 -10 -2 5)) should produce '(-18 -10 -5 -3 -2 0 3 5 5)
 (define merge
   (lambda (list1 list2)
-    (if (and (empty? list1) (empty? list2))
-        '()
-        (if (empty? list1)
-            list2
-            (if (empty? list2)
-                list1
-                (if (< (first list1) (first list2))
-                    (cons (first list1) (merge (cdr list1) list2))
-                    (cons (first list2) (merge list1 (cdr list2)))))))))
+    (cond ((and (empty? list1) (empty? list2)) '())
+          ((empty? list1) list2)
+          ((empty? list2) list1)
+          ((< (first list1) (first list2)) (cons (first list1) (merge (cdr list1) list2)))
+          (else (cons (first list2) (merge list1 (cdr list2)))))))
 
 ; Signature: textIt2(text, currMember)
 ; Purpose: Returns a list whose first member isn't equals to currMember
@@ -79,11 +71,16 @@
 ;          (textIt2 '() '(2)) should produce '()
 (define textIt2
   (lambda (text currMember)
-    (if (empty? text)
-        text
-        (if (equal? (car text) currMember)
-            (textIt2 (cdr text) currMember)
-            text))))
+    (cond ((empty? text) text)
+          ((equal? (car text) currMember) (textIt2 (cdr text) currMember))
+          (else text))))
+;(define textIt2
+;  (lambda (text currMember)
+;    (if (empty? text)
+;        text
+;        (if (equal? (car text) currMember)
+;            (textIt2 (cdr text) currMember)
+;            text))))
 
 ; Signature: remove-adjacent-duplicates(list)
 ; Purpose: Returns a list that doesn't have adjacent members duplicates
