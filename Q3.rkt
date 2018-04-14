@@ -50,8 +50,7 @@
 ; Type: [list*list -> list]
 (define merge-helper
   (lambda (list1 list2)
-    (cond ((and (empty? list1) (empty? list2)) '())
-          ((empty? list1) list2)
+    (cond ((empty? list1) list2)
           ((empty? list2) list1)
           ((< (first list1) (first list2)) (cons (first list1) (merge-helper (rest list1) list2)))
           ((= (first list1) (first list2)) (cons (first list1) (merge-helper (rest list1) (rest list2))))
