@@ -205,9 +205,9 @@ function KSubsets<T>(A: T[], k: number): T[][]
 {
 	function fork(i: number, acc: T[]): T[][]
 	{
-		if (acc.length === k)
+		if (acc.length===k)
 			return [acc];
-		if (i === A.length)
+		if (i===A.length)
 			return [];
 		return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
 	}
@@ -219,7 +219,7 @@ function AllSubsets<T>(A: T[]): T[][]
 {
 	function temp(i: number): T[][]
 	{
-		if (i === A.length)
+		if (i===A.length)
 			return KSubsets(A, i);
 		return KSubsets(A, i).concat(temp(i+1));
 	}
@@ -255,7 +255,7 @@ function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 {
 	function temp(i: number): R[]
 	{
-		if (i === A.length)
+		if (i===A.length)
 			return [];
 		return f(A[i]).concat(temp(i+1));
 	}
@@ -358,7 +358,7 @@ function getBoxArts(movieLists: Movie[]): BoxArtRet[]
 		return {
 			id: y.id,
 			title: y.title,
-			boxart: Flatmap((z: Boxart): string[] => [z.url], y.boxarts.filter((u: Boxart): boolean => u.width === 150 && u.height === 200)).reduce((acc: string): string => acc)
+			boxart: Flatmap((z: Boxart): string[] => [z.url], y.boxarts.filter((u: Boxart): boolean => u.width===150 && u.height===200)).reduce((acc: string): string => acc)
 		}
 	});
 }
