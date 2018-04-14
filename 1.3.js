@@ -11,5 +11,5 @@ let b = [
     [8, 7],
 ];
 a.concat(b);
-console.log(a.concat(b));
+console.log(b);
 //# sourceMappingURL=1.3.js.map
