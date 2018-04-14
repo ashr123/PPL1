@@ -2,19 +2,19 @@
 
 (define vowels '(a e i o u))
 
-; Signature: textIt(text)
+; Signature: count-syllables-helper(text)
 ; Purpose: Returns a list whose first member isn't a vowel
 ; Type: [list -> list]
-; Examples: (textIt '(a a a a)) should produce '()
-;           (textIt '(b b b)) should produce '(b b b)
-;           (textIt '(T r u m p)) should produce '(T r u m p)
-;           (textIt '(i i i k)) should produce '(k)
-;           (textIt '()) should produce '()
-(define textIt
+; Examples: (count-syllables-helper '(a a a a)) should produce '()
+;           (count-syllables-helper '(b b b)) should produce '(b b b)
+;           (count-syllables-helper '(T r u m p)) should produce '(T r u m p)
+;           (count-syllables-helper '(i i i k)) should produce '(k)
+;           (count-syllables-helper '()) should produce '()
+(define count-syllables-helper
   (lambda (text)
     (cond ((empty? text) text)
           ((equal? (member (first text) vowels) #f) text)
-          (else (textIt (rest text))))))
+          (else (count-syllables-helper (rest text))))))
 
 ; Signature: count-syllables(text)
 ; Purpose: Returns s the number of syllables in the word, consecutive vowels counts as one vowel
@@ -28,7 +28,7 @@
     (lambda (text)
       (cond ((empty? text) 0)
             ((equal? (member (first text) vowels) #f) (count-syllables (rest text)))
-            (else (+ 1 (count-syllables (textIt (rest text))))))))
+            (else (+ 1 (count-syllables (count-syllables-helper (rest text))))))))
 
 ; Signature: sorted?(list, comp)
 ; Purpose: Returns #t if the list sorted according to comp
@@ -73,18 +73,18 @@
           ((not (sorted? list2 <)) (raise-argument-error 'merge "sorted? <" 1 list1 list2))
            (else (merge-helper list1 list2)))))
 
-; Signature: textIt2(text, currMember)
+; Signature: remove-adjacent-duplicates-helper(text, currMember)
 ; Purpose: Returns a list whose first member isn't equals to currMember
 ; Type: [list*object -> list]
-; Examples: (textIt2 '(1 3 8) 1) should produce '(3 8)
-;           (textIt2 '(1 1 1) 1) should produce '()
-;           (textIt2 '(1 1 1) 2) should produce '(1 1 1)
-;           (textIt2 '() '()) should produce '()
-;           (textIt2 '() '(2)) should produce '()
-(define textIt2
+; Examples: (remove-adjacent-duplicates-helper '(1 3 8) 1) should produce '(3 8)
+;           (remove-adjacent-duplicates-helper '(1 1 1) 1) should produce '()
+;           (remove-adjacent-duplicates-helper '(1 1 1) 2) should produce '(1 1 1)
+;           (remove-adjacent-duplicates-helper '() '()) should produce '()
+;           (remove-adjacent-duplicates-helper '() '(2)) should produce '()
+(define remove-adjacent-duplicates-helper
   (lambda (text currMember)
     (cond ((empty? text) text)
-          ((equal? (first text) currMember) (textIt2 (rest text) currMember))
+          ((equal? (first text) currMember) (remove-adjacent-duplicates-helper (rest text) currMember))
           (else text))))
 
 ; Signature: remove-adjacent-duplicates(list)
@@ -99,4 +99,4 @@
   (lambda (list)
     (if (empty? list)
         list
-        (cons (first list) (remove-adjacent-duplicates (textIt2 (rest list) (first list)))))))
+        (cons (first list) (remove-adjacent-duplicates (remove-adjacent-duplicates-helper (rest list) (first list)))))))
