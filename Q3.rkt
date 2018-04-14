@@ -13,8 +13,8 @@
 (define textIt
   (lambda (text)
     (cond ((empty? text) text)
-          ((equal? (member (car text) vowels) #f) text)
-          (else (textIt (cdr text))))))
+          ((equal? (member (first text) vowels) #f) text)
+          (else (textIt (rest text))))))
 
 ; Signature: count-syllables(text)
 ; Purpose: Returns s the number of syllables in the word, consecutive vowels counts as one vowel
@@ -27,8 +27,8 @@
 (define count-syllables
     (lambda (text)
       (cond ((empty? text) 0)
-            ((equal? (member (car text) vowels) #f) (count-syllables (cdr text)))
-            (else (+ 1 (count-syllables (textIt (cdr text))))))))
+            ((equal? (member (first text) vowels) #f) (count-syllables (rest text)))
+            (else (+ 1 (count-syllables (textIt (rest text))))))))
 
 ; Signature: sorted?(list, comp)
 ; Purpose: Returns #t if the list sorted according to comp
@@ -42,7 +42,7 @@
   (lambda (list comp)
     (cond ((empty? list) #t)
           ((equal? (length list) 1) #t)
-          ((comp (first list) (second list)) (sorted? (cdr list) comp))
+          ((comp (first list) (second list)) (sorted? (rest list) comp))
           (else #f))))
 
 ; Signature: merge(list1, list2)
@@ -58,8 +58,8 @@
     (cond ((and (empty? list1) (empty? list2)) '())
           ((empty? list1) list2)
           ((empty? list2) list1)
-          ((< (first list1) (first list2)) (cons (first list1) (merge (cdr list1) list2)))
-          (else (cons (first list2) (merge list1 (cdr list2)))))))
+          ((< (first list1) (first list2)) (cons (first list1) (merge (rest list1) list2)))
+          (else (cons (first list2) (merge list1 (rest list2)))))))
 
 ; Signature: textIt2(text, currMember)
 ; Purpose: Returns a list whose first member isn't equals to currMember
@@ -72,7 +72,7 @@
 (define textIt2
   (lambda (text currMember)
     (cond ((empty? text) text)
-          ((equal? (car text) currMember) (textIt2 (cdr text) currMember))
+          ((equal? (first text) currMember) (textIt2 (rest text) currMember))
           (else text))))
 
 ; Signature: remove-adjacent-duplicates(list)
@@ -87,4 +87,4 @@
   (lambda (list)
     (if (empty? list)
         list
-        (cons (first list) (remove-adjacent-duplicates (textIt2 (cdr list) (first list)))))))
+        (cons (first list) (remove-adjacent-duplicates (textIt2 (rest list) (first list)))))))
