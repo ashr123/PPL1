@@ -183,12 +183,14 @@ function testAllSubsets() {
 testKSubsets();
 testAllSubsets();
 function Flatmap(f, A) {
-    function temp(i) {
-        if (i === A.length)
-            return [];
-        return f(A[i]).concat(temp(i + 1));
-    }
-    return temp(0);
+    // function temp(i: number): R[]
+    // {
+    // 	if (i===A.length)
+    // 		return [];
+    // 	return f(A[i]).concat(temp(i+1));
+    // }
+    return A.map(f).reduce((acc, curr) => acc.concat(curr), []);
+    // return temp(0);
 }
 // console.log(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 function testFlatmap() {

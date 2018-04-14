@@ -253,14 +253,14 @@ testAllSubsets();
 
 function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 {
-	function temp(i: number): R[]
-	{
-		if (i===A.length)
-			return [];
-		return f(A[i]).concat(temp(i+1));
-	}
-
-	return temp(0);
+	// function temp(i: number): R[]
+	// {
+	// 	if (i===A.length)
+	// 		return [];
+	// 	return f(A[i]).concat(temp(i+1));
+	// }
+	return A.map(f).reduce((acc: R[], curr: R[]): R[] => acc.concat(curr), []);
+	// return temp(0);
 }
 
 // console.log(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
