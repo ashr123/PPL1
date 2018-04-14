@@ -45,9 +45,23 @@
           ((comp (first list) (second list)) (sorted? (rest list) comp))
           (else #f))))
 
+; Signature: merge-helper(list1, list2)
+; Purpose: Returns a list containing all of the numbers, in increasing order
+; Type: [list*list -> list]
+(define merge-helper
+  (lambda (list1 list2)
+    (cond ((and (empty? list1) (empty? list2)) '())
+          ((empty? list1) list2)
+          ((empty? list2) list1)
+          ((< (first list1) (first list2)) (cons (first list1) (merge-helper (rest list1) list2)))
+          ((= (first list1) (first list2)) (cons (first list1) (merge-helper (rest list1) (rest list2))))
+          (else (cons (first list2) (merge-helper list1 (rest list2)))))))
+
 ; Signature: merge(list1, list2)
 ; Purpose: Returns a list containing all of the numbers, in increasing order
 ; Type: [list*list -> list]
+; Pre-conditions: (sorted? list1 <) ==> #t, (sorted? list2 <) ==> #t
+; Post-condition: (sorted? (merge list1 list2) <) ==> #t
 ; Examples: (merge '(1 3 8) '(2 5 6)) should produce '(1 2 3 5 6 8)
 ;           (merge '() '()) should produce '()
 ;           (merge '() '(2 5 6)) should produce '(2 5 6)
@@ -55,11 +69,9 @@
 ;           (merge '(-5 -3 0 3 5) '(-18 -10 -2 5)) should produce '(-18 -10 -5 -3 -2 0 3 5 5)
 (define merge
   (lambda (list1 list2)
-    (cond ((and (empty? list1) (empty? list2)) '())
-          ((empty? list1) list2)
-          ((empty? list2) list1)
-          ((< (first list1) (first list2)) (cons (first list1) (merge (rest list1) list2)))
-          (else (cons (first list2) (merge list1 (rest list2)))))))
+    (cond ((sorted? list1 >=) (raise-argument-error 'merge "sorted? <" 0 list1 list2))
+          ((sorted? list2 >=) (raise-argument-error 'merge "sorted? <" 1 list1 list2))
+           (else (merge-helper list1 list2)))))
 
 ; Signature: textIt2(text, currMember)
 ; Purpose: Returns a list whose first member isn't equals to currMember

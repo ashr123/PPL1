@@ -166,7 +166,7 @@ function AllSubsets(A) {
     return temp(0);
 }
 const num = [1, 2, 3];
-// console.log(KSubsets(num, 2));
+// console.log(KSubsets([], 2));
 // console.log(KSubsets([[1], [2], [3]], 2));
 // console.log(AllSubsets(num));
 // console.log(AllSubsets([[1], [2], [3]]));
