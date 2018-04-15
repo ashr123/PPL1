@@ -156,8 +156,8 @@ function KSubsets(A, k) {
     // 		return [];
     // 	return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
     // }
-    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).filter((cell) => cell.length === k).map((cell) => cell.reverse());
     // return fork(0, [])
+    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).filter((cell) => cell.length === k).map((cell) => cell.reverse());
 }
 function AllSubsets(A) {
     // function temp(i: number): T[][]
@@ -166,8 +166,8 @@ function AllSubsets(A) {
     // 		return KSubsets(A, i);
     // 	return KSubsets(A, i).concat(temp(i+1));
     // }
-    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).map((cell) => cell.reverse()).sort((cell1, cell2) => cell1.length - cell2.length);
     // return temp(0);
+    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).map((cell) => cell.reverse()).sort((cell1, cell2) => cell1.length - cell2.length);
 }
 const num = [1, 2, 3];
 // console.log(KSubsets([], 2));
@@ -193,8 +193,8 @@ function Flatmap(f, A) {
     // 		return [];
     // 	return f(A[i]).concat(temp(i+1));
     // }
-    return A.map(f).reduce((acc, curr) => acc.concat(curr), []);
     // return temp(0);
+    return A.map(f).reduce((acc, curr) => acc.concat(curr), []);
 }
 // console.log(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 function testFlatmap() {
