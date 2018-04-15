@@ -148,22 +148,26 @@ testGTreePreArray();
 testGTreeInArray();
 testGTreePostArray();
 function KSubsets(A, k) {
-    function fork(i, acc) {
-        if (acc.length === k)
-            return [acc];
-        if (i === A.length)
-            return [];
-        return fork(i + 1, acc.concat([A[i]])).concat(fork(i + 1, acc));
-    }
-    return fork(0, []);
+    // function fork(i: number, acc: T[]): T[][]
+    // {
+    // 	if (acc.length===k)
+    // 		return [acc];
+    // 	if (i===A.length)
+    // 		return [];
+    // 	return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
+    // }
+    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).filter((cell) => cell.length === k).map((cell) => cell.reverse());
+    // return fork(0, [])
 }
 function AllSubsets(A) {
-    function temp(i) {
-        if (i === A.length)
-            return KSubsets(A, i);
-        return KSubsets(A, i).concat(temp(i + 1));
-    }
-    return temp(0);
+    // function temp(i: number): T[][]
+    // {
+    // 	if (i===A.length)
+    // 		return KSubsets(A, i);
+    // 	return KSubsets(A, i).concat(temp(i+1));
+    // }
+    return A.reduce((subsets, value) => subsets.concat(subsets.map(set => [value, ...set])), [[]]).map((cell) => cell.reverse()).sort((cell1, cell2) => cell1.length - cell2.length);
+    // return temp(0);
 }
 const num = [1, 2, 3];
 // console.log(KSubsets([], 2));

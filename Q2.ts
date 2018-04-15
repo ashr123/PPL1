@@ -203,28 +203,30 @@ testGTreePostArray();
 
 function KSubsets<T>(A: T[], k: number): T[][]
 {
-	function fork(i: number, acc: T[]): T[][]
-	{
-		if (acc.length===k)
-			return [acc];
-		if (i===A.length)
-			return [];
-		return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
-	}
+	// function fork(i: number, acc: T[]): T[][]
+	// {
+	// 	if (acc.length===k)
+	// 		return [acc];
+	// 	if (i===A.length)
+	// 		return [];
+	// 	return fork(i+1, acc.concat([A[i]])).concat(fork(i+1, acc));
+	// }
 
-	return fork(0, [])
+	return A.reduce((subsets: T[][], value: T): T[][] => subsets.concat(subsets.map(set => [value, ...set])), [[]]).filter((cell: T[]): boolean => cell.length===k).map((cell: T[]): T[] => cell.reverse());
+	// return fork(0, [])
 }
 
 function AllSubsets<T>(A: T[]): T[][]
 {
-	function temp(i: number): T[][]
-	{
-		if (i===A.length)
-			return KSubsets(A, i);
-		return KSubsets(A, i).concat(temp(i+1));
-	}
+	// function temp(i: number): T[][]
+	// {
+	// 	if (i===A.length)
+	// 		return KSubsets(A, i);
+	// 	return KSubsets(A, i).concat(temp(i+1));
+	// }
 
-	return temp(0);
+	return A.reduce((subsets: T[][], value: T): T[][] => subsets.concat(subsets.map(set => [value, ...set])), [[]]).map((cell: T[]): T[] => cell.reverse()).sort((cell1: T[], cell2: T[]): number => cell1.length-cell2.length);
+	// return temp(0);
 }
 
 const num: number[]=[1, 2, 3];
