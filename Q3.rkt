@@ -92,7 +92,7 @@
 ; Examples: (remove-adjacent-duplicates '(y a b b a d a b b a d o o)) should produce '(y a b a d a b a d o)
 ;           (remove-adjacent-duplicates '(yeah yeah yeah)) should produce '(yeah)
 ;           (remove-adjacent-duplicates '()) should produce '()
-;           (remove-adjacent-duplicates '(a)) should produce '(a)
+;            (remove-adjacent-duplicates '(a)) should produce '(a)
 ;           (remove-adjacent-duplicates '(b b b s o t)) should produce '(b s o t)
 (define remove-adjacent-duplicates
   (lambda (list)

@@ -361,8 +361,8 @@ function getBoxArts(movieLists: Movie[]): BoxArtRet[]
 		return {
 			id: y.id,
 			title: y.title,
-			boxart: Flatmap((z: Boxart): string[] => [z.url], y.boxarts.filter((u: Boxart): boolean => u.width===150 && u.height===200)).reduce((acc: string): string => acc)
-		}
+			boxart: Flatmap((z: Boxart): string[] => [z.url], y.boxarts.filter((u: Boxart): boolean => u.width===150 && u.height===200)).toString()
+		};
 	});
 }
 
