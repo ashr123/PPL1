@@ -115,25 +115,28 @@ const tree1: BinTree={
 		return TreePostArray(tree.left).concat(TreePostArray(tree.right)).concat([tree.root]) //union(union(TreePostArray(tree.left), TreePostArray(tree.right)), [tree.root]);
 	};
 
-function testTreePreArray(): void
+function testTreePreArray(): boolean
 {
 	assert.deepStrictEqual(TreePreArray(tree1), [5, -3, 23, 3, 8, 12]);
 	assert.deepStrictEqual(TreePreArray(tree2), [1, 2, 3, 4, 5, 6, 7, 8]);
 	assert.deepStrictEqual(TreePreArray(tree3), []);
+	return true;
 }
 
-function testTreeInArray(): void
+function testTreeInArray(): boolean
 {
 	assert.deepStrictEqual(TreeInArray(tree1), [23, -3, 5, 8, 3, 12]);
 	assert.deepStrictEqual(TreeInArray(tree2), [1, 2, 3, 4, 5, 6, 7, 8]);
 	assert.deepStrictEqual(TreeInArray(tree3), []);
+	return true;
 }
 
-function testTreePostArray(): void
+function testTreePostArray(): boolean
 {
 	assert.deepStrictEqual(TreePostArray(tree1), [23, -3, 8, 12, 3, 5]);
 	assert.deepStrictEqual(TreePostArray(tree2), [8, 7, 6, 5, 4, 3, 2, 1]);
 	assert.deepStrictEqual(TreePostArray(tree3), []);
+	return true;
 }
 
 testTreePreArray();
@@ -176,25 +179,28 @@ function GTreePostArray<T>(tree: GBinTree<T>): T[]
 // console.log(GTreeInArray(GTree1));
 // console.log(GTreePostArray(GTree1));
 
-function testGTreePreArray(): void
+function testGTreePreArray(): boolean
 {
 	assert.deepStrictEqual(GTreePreArray(GTree1), [true, 'a', 'Java', 'Scheme', 'b', 8]);
 	assert.deepStrictEqual(GTreePreArray(GTree2), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
 	assert.deepStrictEqual(GTreePreArray(GTree3), []);
+	return true;
 }
 
-function testGTreeInArray(): void
+function testGTreeInArray(): boolean
 {
 	assert.deepStrictEqual(GTreeInArray(GTree1), ['Java', 'Scheme', 'a', true, 8, 'b']);
 	assert.deepStrictEqual(GTreeInArray(GTree2), ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
 	assert.deepStrictEqual(GTreeInArray(GTree3), []);
+	return true;
 }
 
-function testGTreePostArray(): void
+function testGTreePostArray(): boolean
 {
 	assert.deepStrictEqual(GTreePostArray(GTree1), ['Scheme', 'Java', 'a', 8, 'b', true]);
 	assert.deepStrictEqual(GTreePostArray(GTree2), ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']);
 	assert.deepStrictEqual(GTreePostArray(GTree3), []);
+	return true;
 }
 
 testGTreePreArray();
@@ -235,19 +241,21 @@ const num: number[]=[1, 2, 3];
 // console.log(AllSubsets(num));
 // console.log(AllSubsets([[1], [2], [3]]));
 
-function testKSubsets(): void
+function testKSubsets(): boolean
 {
 	assert.deepStrictEqual(KSubsets(num, 2), [[1, 2], [1, 3], [2, 3]]);
 	assert.deepStrictEqual(KSubsets(num, 0), [[]]);
 	assert.deepStrictEqual(KSubsets(num, 3), [[1, 2, 3]]);
+	return true;
 }
 
-function testAllSubsets(): void
+function testAllSubsets(): boolean
 {
 	assert.deepStrictEqual(AllSubsets(num), [[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]);
 	assert.deepStrictEqual(AllSubsets([[1], [2], [3]]),
 		[[], [[1]], [[2]], [[3]], [[1], [2]], [[1], [3]], [[2], [3]], [[1], [2], [3]]]);
 	assert.deepStrictEqual(AllSubsets([]), [[]]);
+	return true;
 }
 
 testKSubsets();
@@ -268,12 +276,13 @@ function Flatmap<T, R>(f: (x: T) => R[], A: T[]): R[]
 
 // console.log(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]));
 
-function testFlatmap(): void
+function testFlatmap(): boolean
 {
 	assert.deepStrictEqual(Flatmap(x => x[0], [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]), [1, 2, 5, 6]);
 	assert.deepStrictEqual(Flatmap(x => [x, x+1], [1, 2, 3, 4]), [1, 2, 2, 3, 3, 4, 4, 5]);
 	assert.deepStrictEqual(Flatmap(x => x, [[[1, 2], [3, 4]], [[5, 6], [7, 8]]]),
 		[[1, 2], [3, 4], [5, 6], [7, 8]]);
+	return true;
 }
 
 testFlatmap();
@@ -287,13 +296,13 @@ type Video={
 	rating: number,
 	bookmark: { id: number, time: number }[]
 }
-type BoxArtRet={ id: number, title: string, boxart: string };
-
 interface Movie
 {
 	name: string,
 	videos: Video[]
 }
+
+type BoxArtRet={ id: number, title: string, boxart: string };
 
 const movieLists: Movie[]=[
 	{
@@ -368,7 +377,7 @@ function getBoxArts(movieLists: Movie[]): BoxArtRet[]
 
 // console.log(getBoxArts([{name: "Empty", videos: []}]));
 
-function testGetBoxArts()
+function testGetBoxArts(): boolean
 {
 	assert.deepStrictEqual(getBoxArts(movieLists), [{
 		id: 70111470,
@@ -392,6 +401,7 @@ function testGetBoxArts()
 		}]);
 	assert.deepStrictEqual(getBoxArts([{name: "Empty", videos: []}]), []);
 	assert.deepStrictEqual(getBoxArts([]), []);
+	return true;
 }
 
 testGetBoxArts();
